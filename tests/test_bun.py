@@ -5,8 +5,12 @@ from praktikum.praktikum import Bun
 
 class TestsBun:
 
-    @pytest.mark.parametrize("test_bun, price", [["Булочка", 100], ["pie", 0], ["BURGER", -300]])
-    def test_create_new_bun(self, test_bun, price):
-        bun = Bun(test_bun, price)
+    @pytest.mark.parametrize("test_bun", ["Булочка", "pie", "BURGER"])
+    def test_create_new_bun_get_name(self, test_bun):
+        bun = Bun(test_bun, 100)
         assert bun.get_name() == test_bun
+
+    @pytest.mark.parametrize("price", [100, 0, -300])
+    def test_create_new_bun_get_price(self, price):
+        bun = Bun("BURGER", price)
         assert bun.get_price() == price
